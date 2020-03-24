@@ -23,23 +23,20 @@ authRouter.post("/login", (req, res) => {
     .findBy({ username })
     .then(user => {
       if (user && bc.compareSync(password, user.password)) {
-          const payload = {
-              sub: user.id,
-              username: user.username,
-              department: user.department
-          }
-          const options = {
-              expiresIn: '1d' 
-          }
+        const payload = {
+          sub: user.id,
+          username: user.username,
+          department: user.department
+        };
+        const options = {
+          expiresIn: "1d"
+        };
 
-        const token = jwt.sign(
-            payload,
-            process.env.JWT_SECRET,
-            options);
+        const token = jwt.sign(payload, process.env.JWT_SECRET, options);
 
-        res.json({token});
+        res.json({ token });
       } else {
-        res.status(401).json({message: 'you shall not pass'});
+        res.status(401).json({ message: "you shall not pass" });
       }
     })
     .catch(err => {

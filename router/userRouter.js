@@ -1,15 +1,16 @@
-const userRouter = require("express").Router()
-const userModel = require("../models/userModel")
-const mw = require("../middleware")
+const userRouter = require("express").Router();
+const userModel = require("../models/userModel");
+const mw = require("../middleware");
 
 userRouter.get("/", mw.restricted, (req, res) => {
-    userModel.findAll()
+  userModel
+    .findAll()
     .then(response => {
-        res.json(response)
+      res.json(response);
     })
     .catch(err => {
-        res.status(500).json({message: 'you shall not pass'})
-    })
-})
+      res.status(500).json({ message: "you shall not pass" });
+    });
+});
 
-module.exports = userRouter
+module.exports = userRouter;
