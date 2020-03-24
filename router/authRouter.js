@@ -29,9 +29,9 @@ authRouter.post("/login", (req, res) => {
               department: user.department
           }
           const options = {
-              expiresIn: 30 
+              expiresIn: '1d' 
           }
-          
+
         const token = jwt.sign(
             payload,
             process.env.JWT_SECRET,
@@ -39,7 +39,7 @@ authRouter.post("/login", (req, res) => {
 
         res.json({token});
       } else {
-        res.status(401).end();
+        res.status(401).json({message: 'you shall not pass'});
       }
     })
     .catch(err => {
