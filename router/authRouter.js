@@ -5,7 +5,7 @@ const userModel = require("../models/userModel");
 
 authRouter.post("/register", (req, res) => {
   const user = req.body;
-  const hashPassword = bc.hashSync(user.password);
+  const hashPassword = bc.hashSync(user.password, 12);
   user.password = hashPassword;
   userModel
     .add(user)
