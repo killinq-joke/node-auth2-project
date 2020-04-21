@@ -1,13 +1,13 @@
 const db = require("../data/dbConfig");
 
 module.exports = {
-  findAll,
+  findByDepartment,
   findBy,
   add,
 };
 
-function findAll() {
-  return db("users");
+function findByDepartment(department) {
+  return db("users").where("department", department);
 }
 
 function findBy(filter) {

@@ -41,7 +41,8 @@ router.post("/api/login", (req, res) => {
 function generateToken(user) {
   const payload = {
     userID: user.id,
-    username: user.username
+    username: user.username,
+    department: user.department
   }
 
   const secret = require("../secret")
