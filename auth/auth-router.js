@@ -27,8 +27,8 @@ router.post("/api/login", (req, res) => {
   md.findBy({ username })
     .then((user) => {
       if (user && bc.compareSync(password, user[0].password)) {
-        const token = generateToken(user);
-        res.status(200).json({ message: "come in", token });
+        const token = generateToken(user[0]);
+        res.status(200).json({ message: "come in", token  });
       } else {
         res.status(401).json({ you: "shall not pass" });
       }
@@ -50,7 +50,7 @@ function generateToken(user) {
     expiresIn: "1d",
   };
 
-  jwt.sign(payload, secret, options);
+  return jwt.sign(payload, secret, options);
 }
 
 module.exports = router;
